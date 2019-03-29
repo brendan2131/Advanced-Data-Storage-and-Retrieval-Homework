@@ -35,8 +35,8 @@ def welcome():
         f"/api/v1.0/precipitation <br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/start<br/>"
-        f"/api/v1.0/start/end<br/>"
+        f"/api/v1.0/<start><br/>"
+        f"/api/v1.0/<start>/<end><br/>"
     )
 @app.route("/api/v1.0/precipitation")
 def precipitation():
@@ -70,7 +70,7 @@ def stations():
 @app.route("/api/v1.0/tobs")
 def tobs():
     year_ago = dt.date(2017, 8, 23) - dt.timedelta(days=365)
-    
+
     tobs_query = session.query(Measurement.date, Measurement.tobs).filter(Measurement.date >= year_ago).all()
 
     json_tobs = []
